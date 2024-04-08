@@ -4,10 +4,11 @@ require 'colored2'
 module Pod
   class TemplateConfigurator
 
-    attr_reader :pod_name, :pods_for_podfile, :prefixes, :test_example_file, :username, :email
+    attr_reader :pod_name, :pod_type, :pods_for_podfile, :prefixes, :test_example_file, :username, :email
 
     def initialize(pod_name)
       @pod_name = pod_name
+      @pod_type = ""
       @pods_for_podfile = []
       @prefixes = []
       @message_bank = MessageBank.new(self)
@@ -70,31 +71,46 @@ module Pod
     def run
       @message_bank.welcome_message
 
-      platform = self.ask_with_answers("What platform do you want to use?", ["iOS", "macOS"]).to_sym
+      templateType = self.ask_with_answers("What kind of pod-template do you want to create", ["Feature", "Flow", 
+      "LowLevel", "Midelware"]).to_sym
+      @pod_type = templateType
+
+      case templateType
+        when :feature
+          #ConfigureFeauturePod
+          print("User selects Feauture-pod")
+        when :flow
+          #ConfigureFlowPod
+          print("User selects Flow-pod")
+        when :LowLevel
+          #ConfigureLowLevelPod
+          print("User selects LowLevel-pod")
+        when :midelware
+          #ConfigureMidelwarePod
+          print("User selects Midelware-pod")
+      end
+
+      platform = self.ask_with_answers("What platform do you want to use", ["iOS", "macOS", "tvOS"]).to_sym
 
       case platform
         when :macos
           ConfigureMacOSSwift.perform(configurator: self)
         when :ios
-          framework = self.ask_with_answers("What language do you want to use?", ["Swift", "ObjC"]).to_sym
-          case framework
-            when :swift
-              ConfigureSwift.perform(configurator: self)
-
-            when :objc
-              ConfigureIOS.perform(configurator: self)
-          end
+          ConfigureSwift.perform(configurator: self)
+        when :tvos 
+          #ConfiguretvOSSwift.perform(configurator: self)
+          print("User has selected the platform - tvOS")
       end
 
-      replace_variables_in_files
-      clean_template_files
-      rename_template_files
-      add_pods_to_podfile
-      customise_prefix
-      rename_classes_folder
-      ensure_carthage_compatibility
-      reinitialize_git_repo
-      run_pod_install
+      replace_variables_in_files #need 
+      clean_template_files #need 
+      rename_template_files #need 
+      add_pods_to_podfile #?
+      customise_prefix #?
+      rename_classes_folder #?
+      ensure_carthage_compatibility #no
+      reinitialize_git_repo #no
+      run_pod_install #no 
 
       @message_bank.farewell_message
     end
@@ -128,6 +144,7 @@ module Pod
       file_names.each do |file_name|
         text = File.read(file_name)
         text.gsub!("${POD_NAME}", @pod_name)
+        text.gsub!("${POD_TYPE}", @pod_type)
         text.gsub!("${REPO_NAME}", @pod_name.gsub('+', '-'))
         text.gsub!("${USER_NAME}", user_name)
         text.gsub!("${USER_EMAIL}", user_email)
