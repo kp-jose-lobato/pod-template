@@ -101,7 +101,7 @@ module Pod
         end
         
         prepare_sources_according_to_selection
-        # replace_variables_in_files #need 
+        replace_variables_in_files 
         # clean_template_files #need 
         # rename_template_files #need 
         # add_pods_to_podfile #?
@@ -206,7 +206,9 @@ module Pod
       end
       
       def replace_variables_in_files
-        file_names = ['POD_LICENSE', 'POD_README.md', 'NAME.podspec', '.travis.yml', podfile_path]
+        # TODO enable podfile_path later
+        # file_names = ['POD_README.md', 'NAME.podspec', podfile_path]
+        file_names = ['POD_README.md', 'NAME.podspec', 'CuckooMockGenerator.sh']
         file_names.each do |file_name|
           replace_file_content(file_name)
         end
@@ -218,11 +220,11 @@ module Pod
         text.gsub!("${POD_NAME}", @pod_name)
         text.gsub!("XVXXX", @pod_name)
         text.gsub!("${POD_TYPE}", @pod_type.to_s)
-        text.gsub!("${REPO_NAME}", @pod_name.gsub('+', '-'))
-        text.gsub!("${USER_NAME}", user_name)
-        text.gsub!("${USER_EMAIL}", user_email)
-        text.gsub!("${YEAR}", year)
-        text.gsub!("${DATE}", date)
+        # text.gsub!("${REPO_NAME}", @pod_name.gsub('+', '-'))
+        # text.gsub!("${USER_NAME}", user_name)
+        # text.gsub!("${USER_EMAIL}", user_email)
+        # text.gsub!("${YEAR}", year)
+        # text.gsub!("${DATE}", date)
         File.open(file_name, "w") { |file| file.puts text }
       end
       
@@ -284,27 +286,27 @@ module Pod
       # Accessory methods to collect data.
       #----------------------------------------#
       
-      def user_name
-        (ENV['GIT_COMMITTER_NAME'] || github_user_name || `git config user.name` || `<GITHUB_USERNAME>` ).strip
-      end
+      # def user_name
+      #   (ENV['GIT_COMMITTER_NAME'] || github_user_name || `git config user.name` || `<GITHUB_USERNAME>` ).strip
+      # end
       
-      def github_user_name
-        github_user_name = `security find-internet-password -s github.com | grep acct | sed 's/"acct"<blob>="//g' | sed 's/"//g'`.strip
-        is_valid = github_user_name.empty? or github_user_name.include? '@'
-        return is_valid ? nil : github_user_name
-      end
+      # def github_user_name
+      #   github_user_name = `security find-internet-password -s github.com | grep acct | sed 's/"acct"<blob>="//g' | sed 's/"//g'`.strip
+      #   is_valid = github_user_name.empty? or github_user_name.include? '@'
+      #   return is_valid ? nil : github_user_name
+      # end
       
-      def user_email
-        (ENV['GIT_COMMITTER_EMAIL'] || `git config user.email`).strip
-      end
+      # def user_email
+      #   (ENV['GIT_COMMITTER_EMAIL'] || `git config user.email`).strip
+      # end
       
-      def year
-        Time.now.year.to_s
-      end
+      # def year
+      #   Time.now.year.to_s
+      # end
       
-      def date
-        Time.now.strftime "%m/%d/%Y"
-      end
+      # def date
+      #   Time.now.strftime "%m/%d/%Y"
+      # end
       
       def podfile_path
         'Example/Podfile'
