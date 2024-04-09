@@ -194,7 +194,7 @@ module Pod
       end
       
       def clean_template_files
-        ["./**/.gitkeep", "configure", "_CONFIGURE.rb", "README.md", "LICENSE", "templates", "setup", "CODE_OF_CONDUCT.md"].each do |asset|
+        ["./**/.gitkeep", "configure", "_CONFIGURE.rb", "README.md", "LICENSE", "templates", "setup", "CODE_OF_CONDUCT.md", ".gitignore"].each do |asset|
           `rm -rf #{asset}`
         end
       end
@@ -274,19 +274,19 @@ module Pod
       # Accessory methods to collect data.
       #----------------------------------------#
       
-      # def user_name
-      #   (ENV['GIT_COMMITTER_NAME'] || github_user_name || `git config user.name` || `<GITHUB_USERNAME>` ).strip
-      # end
+      def user_name
+        (ENV['GIT_COMMITTER_NAME'] || github_user_name || `git config user.name` || `<GITHUB_USERNAME>` ).strip
+      end
       
-      # def github_user_name
-      #   github_user_name = `security find-internet-password -s github.com | grep acct | sed 's/"acct"<blob>="//g' | sed 's/"//g'`.strip
-      #   is_valid = github_user_name.empty? or github_user_name.include? '@'
-      #   return is_valid ? nil : github_user_name
-      # end
+      def github_user_name
+        github_user_name = `security find-internet-password -s github.com | grep acct | sed 's/"acct"<blob>="//g' | sed 's/"//g'`.strip
+        is_valid = github_user_name.empty? or github_user_name.include? '@'
+        return is_valid ? nil : github_user_name
+      end
       
-      # def user_email
-      #   (ENV['GIT_COMMITTER_EMAIL'] || `git config user.email`).strip
-      # end
+      def user_email
+        (ENV['GIT_COMMITTER_EMAIL'] || `git config user.email`).strip
+      end
       
       # def year
       #   Time.now.year.to_s
