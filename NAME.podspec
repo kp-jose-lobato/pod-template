@@ -10,11 +10,16 @@ Pod::Spec.new do |s|
   s.source           = { :git => '', :tag => s.version.to_s }
 
   # Platforms
-  s.ios.deployment_target = '10.0'
+  s.ios.deployment_target = '15.0'
+  s.osx.deployment_target = '12.0'
 
 
   # Dependencies
-  # remove this line and add dependencies if needed
+  s.dependency 'XVAsset'
+  s.dependency 'UIFramework'
+  s.dependency 'KPAnalyticsInterface'
+  s.dependency 'XVCoordinationRequest'
+  s.dependency 'XVEntities'
 
 
   # Source files 

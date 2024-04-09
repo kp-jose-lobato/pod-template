@@ -102,14 +102,12 @@ module Pod
         
         prepare_sources_according_to_selection
         replace_variables_in_files 
-        # clean_template_files #need 
-        # rename_template_files #need 
+        clean_template_files 
+        rename_template_files 
         # add_pods_to_podfile #?
         # customise_prefix #?
-        # rename_classes_folder #?
-        # ensure_carthage_compatibility #no
-        # reinitialize_git_repo #no
-        # run_pod_install #no 
+        delete_template_git_repo
+        # run_pod_install #? 
         
         # @message_bank.farewell_message
       end
@@ -183,10 +181,6 @@ module Pod
         
       end
       
-      def ensure_carthage_compatibility
-        FileUtils.ln_s('Example/Pods/Pods.xcodeproj', '_Pods.xcodeproj')
-      end
-      
       def run_pod_install
         puts "\nRunning " + "pod install".magenta + " on your new library."
         puts ""
@@ -195,8 +189,8 @@ module Pod
           system "pod install"
         end
         
-        `git add Example/#{pod_name}.xcodeproj/project.pbxproj`
-        `git commit -m "Initial commit"`
+        # `git add Example/#{pod_name}.xcodeproj/project.pbxproj`
+        # `git commit -m "Initial commit"`
       end
       
       def clean_template_files
@@ -264,18 +258,12 @@ module Pod
       
       def rename_template_files
         FileUtils.mv "POD_README.md", "README.md"
-        FileUtils.mv "POD_LICENSE", "LICENSE"
         FileUtils.mv "NAME.podspec", "#{pod_name}.podspec"
       end
       
-      def rename_classes_folder
-        FileUtils.mv "Pod", @pod_name
-      end
       
-      def reinitialize_git_repo
+      def delete_template_git_repo
         `rm -rf .git`
-        `git init`
-        `git add -A`
       end
       
       def validate_user_details
