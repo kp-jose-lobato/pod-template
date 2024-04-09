@@ -23,7 +23,7 @@ Pod::Spec.new do |s|
 
 
   # Source files 
-  s.source_files = '${POD_NAME}/Classes/**/*'
+  s.source_files = '${POD_NAME}/Sources/**/*'
 
 
   # Test

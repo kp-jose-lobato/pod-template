@@ -74,15 +74,12 @@ module Pod
     
     templateType = self.ask_with_answers("What kind of pod-template do you want to create", ["Feature", "Interface"]).to_sym
       @pod_type = templateType
-      # puts "Pod type: #{@pod_type}"
       
       case templateType
       when :feature
         #ConfigureFeauturePod
-        puts "User selects Feauture-pod"
       when :interface
         #ConfigureMidelwarePod
-        puts "User selects Midelware-pod"
       else 
         puts "Sorry mate! no template yet for that option... keep trying."
       end
@@ -109,7 +106,7 @@ module Pod
         delete_template_git_repo
         # run_pod_install #? 
         
-        # @message_bank.farewell_message
+        @message_bank.farewell_message
       end
       
       #----------------------------------------#
@@ -133,7 +130,6 @@ module Pod
           
           case @platform
           when :ios, :macos
-            puts " -> renaming template to #{@pod_name}"
             File.rename("Pod-iOS-macOS-Feature", @pod_name)
           else
             abort("Sorry mate! no template yet for that platform... keep trying.")
@@ -152,7 +148,6 @@ module Pod
         Dir.glob("#{folder_to_delete_prefix}*").each do |folder|
           if File.directory?(folder)
             FileUtils.rm_rf(folder)
-            puts "Deleted unused template: #{folder}"
           end
         end
       end
@@ -162,10 +157,8 @@ module Pod
         # this step we rename them to match the given name by the user.
         placeholder = "XVXXX"
         pattern = "#{@pod_name}/**/*#{placeholder}*"
-        puts " Rename with pattern #{pattern}"
         Dir.glob(pattern).each do |name|
           new_name = name.gsub(placeholder, @pod_name)
-          puts " -> renaming file name : #{name} to new name: #{new_name}"
           File.rename(name, new_name)
         end
       end
@@ -174,7 +167,6 @@ module Pod
         # Once the template is selected and the folders has been rename we need to rename the content of the
         # template files.
         pattern = "#{@pod_name}/**/*"
-        puts " Rename content of file with pattern #{pattern}"
         Dir.glob(pattern).each do |path|
           replace_file_content(path) if File.file?(path)
         end
