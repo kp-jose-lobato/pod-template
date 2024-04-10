@@ -44,6 +44,7 @@ Pod::Spec.new do |s|
   # Generate the mocks on every build
   s.script_phase = { :name => 'Cuckoo Mock Generator',
         :script => 'cd "$(git rev-parse --show-toplevel 2>/dev/null)"/Features ; sh ${POD_NAME}/CuckooMockGenerator.sh',
-        :execution_position => :before_compile }
+        :execution_position => :before_compile,
+        :always_out_of_date => '1'}
 
 end

@@ -29,15 +29,15 @@ module Pod
       case @configurator.pod_type
       when :feature
         puts "  Configuring dependencies in a feature pod"
-        configurator.add_pod_to_podfile "XVAsset"
-        configurator.add_pod_to_podfile "UIFramework"
-        configurator.add_pod_to_podfile "KPAnalyticsInterface"
-        configurator.add_pod_to_podfile "XVCoordinationRequest"
-        configurator.add_pod_to_podfile "XVEntities"
+        configurator.add_pod_to_podfile Dependency.new "XVAsset", "../../../Common/XVAsset"
+        configurator.add_pod_to_podfile Dependency.new "UIFramework", "../../../UIFramework"
+        configurator.add_pod_to_podfile Dependency.new "XVCoordinationRequest", "../../../Common/XVCoordinationRequest"
+        configurator.add_pod_to_podfile Dependency.new "KPAnalyticsInterface", "../../../Common/KPAnalyticsInterface"
+        configurator.add_pod_to_podfile Dependency.new "XVEntities", "../../../Common/XVEntities"
         
       when :interface
         puts "  Configuring dependencies in an interface pod"
-        configurator.add_pod_to_podfile "XVEntities"
+        configurator.add_pod_to_podfile Dependency.new "XVEntities", "../../../Common/XVEntities"
 
       else
         puts "  Unknown pod type to configure"

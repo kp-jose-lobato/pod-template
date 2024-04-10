@@ -2,6 +2,10 @@ require 'fileutils'
 require 'colored2'
 
 module Pod
+
+  # This type help us pass pod dependencies from Configurators
+  Dependency = Struct.new(:name, :path, :version)
+
   class TemplateConfigurator
     
     attr_reader :pod_name, :pod_type, :platform, :pods_for_podfile, :prefixes, :test_example_file, :username, :email
@@ -219,7 +223,10 @@ module Pod
       # This method adds the pod needed during the configuration to the new Podfile.
       podfile = File.read podfile_path
       podfile_content = @pods_for_podfile.map do |pod|
-        "pod '" + pod + "'"
+        pod_def = "pod '" + pod.name + "'"
+        pod_def += ", '" + pod.path + "'" if pod.path != nil
+        pod_def += ", '" + pod.version + "'" if pod.version != nil
+        pod_def
       end.join("\n    ")
       podfile.gsub!("${INCLUDED_PODS}", podfile_content)
       File.open(podfile_path, "w") { |file| file.puts podfile }
