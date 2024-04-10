@@ -94,17 +94,17 @@ module Pod
           #ConfiguretvOSSwift.perform(configurator: self)
           puts "User has selected the platform - tvOS"
         end
-
-        abort("Abort to avoid the rest of the code to run!")
         
         prepare_sources_according_to_selection
         replace_variables_in_files 
         clean_template_files 
         rename_template_files 
-        # add_pods_to_podfile #?
-        # customise_prefix #?
-      # delete_template_git_repo
-        # run_pod_install #? 
+        add_pods_to_podfile
+        # We are not using the prefix for now, but it is a feaure that can be handy when developing the demo project
+        # Leaving this line commented temporately.
+        # customise_prefix
+        delete_template_git_repo
+        run_pod_install
         
         @message_bank.farewell_message
       end
@@ -181,8 +181,6 @@ module Pod
           system "pod install"
         end
         
-        # `git add Example/#{pod_name}.xcodeproj/project.pbxproj`
-        # `git commit -m "Initial commit"`
       end
       
       def clean_template_files
@@ -192,9 +190,7 @@ module Pod
       end
       
       def replace_variables_in_files
-        # TODO enable podfile_path later
-        # file_names = ['POD_README.md', 'NAME.podspec', podfile_path]
-        file_names = ['POD_README.md', 'NAME.podspec', 'CuckooMockGenerator.sh']
+        file_names = ['POD_README.md', 'NAME.podspec', podfile_path, 'CuckooMockGenerator.sh']
         file_names.each do |file_name|
           replace_file_content(file_name)
         end

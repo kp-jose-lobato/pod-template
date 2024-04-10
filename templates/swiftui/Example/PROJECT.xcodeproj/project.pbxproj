@@ -25,7 +25,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		B40A2DB22BC6711500297728 /* PROJECT_Examaple.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PROJECT_Examaple.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B40A2DB22BC6711500297728 /* PROJECT_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PROJECT_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B40A2DB52BC6711500297728 /* PROJECTApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PROJECTApp.swift; sourceTree = "<group>"; };
 		B40A2DB72BC6711500297728 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		B40A2DB92BC6711700297728 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -65,7 +65,7 @@
 		B40A2DB32BC6711500297728 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				B40A2DB22BC6711500297728 /* PROJECT_Examaple.app */,
+				B40A2DB22BC6711500297728 /* PROJECT_Example.app */,
 				B40A2DC22BC6711700297728 /* PROJECT_Tests.xctest */,
 			);
 			name = Products;
@@ -108,9 +108,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		B40A2DB12BC6711500297728 /* PROJECT_Examaple */ = {
+		B40A2DB12BC6711500297728 /* PROJECT_Example */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B40A2DD62BC6711700297728 /* Build configuration list for PBXNativeTarget "PROJECT_Examaple" */;
+			buildConfigurationList = B40A2DD62BC6711700297728 /* Build configuration list for PBXNativeTarget "PROJECT_Example" */;
 			buildPhases = (
 				B40A2DAE2BC6711500297728 /* Sources */,
 				B40A2DAF2BC6711500297728 /* Frameworks */,
@@ -120,9 +120,9 @@
 			);
 			dependencies = (
 			);
-			name = PROJECT_Examaple;
+			name = PROJECT_Example;
 			productName = PROJECT;
-			productReference = B40A2DB22BC6711500297728 /* PROJECT_Examaple.app */;
+			productReference = B40A2DB22BC6711500297728 /* PROJECT_Example.app */;
 			productType = "com.apple.product-type.application";
 		};
 		B40A2DC12BC6711700297728 /* PROJECT_Tests */ = {
@@ -175,7 +175,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				B40A2DB12BC6711500297728 /* PROJECT_Examaple */,
+				B40A2DB12BC6711500297728 /* PROJECT_Example */,
 				B40A2DC12BC6711700297728 /* PROJECT_Tests */,
 			);
 		};
@@ -223,7 +223,7 @@
 /* Begin PBXTargetDependency section */
 		B40A2DC42BC6711700297728 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = B40A2DB12BC6711500297728 /* PROJECT_Examaple */;
+			target = B40A2DB12BC6711500297728 /* PROJECT_Example */;
 			targetProxy = B40A2DC32BC6711700297728 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -458,7 +458,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B40A2DD62BC6711700297728 /* Build configuration list for PBXNativeTarget "PROJECT_Examaple" */ = {
+		B40A2DD62BC6711700297728 /* Build configuration list for PBXNativeTarget "PROJECT_Example" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B40A2DD72BC6711700297728 /* Debug */,
