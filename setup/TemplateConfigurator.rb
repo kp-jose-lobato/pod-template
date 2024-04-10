@@ -224,7 +224,7 @@ module Pod
       podfile = File.read podfile_path
       podfile_content = @pods_for_podfile.map do |pod|
         pod_def = "pod '" + pod.name + "'"
-        pod_def += ", '" + pod.path + "'" if pod.path != nil
+        pod_def += ", :path => '" + pod.path + "'" if pod.path != nil
         pod_def += ", '" + pod.version + "'" if pod.version != nil
         pod_def
       end.join("\n    ")
