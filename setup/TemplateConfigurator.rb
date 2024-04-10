@@ -88,14 +88,14 @@ module Pod
         @platform = platform
         
         case platform
-        when :macos
-          #ConfigureMacOSSwift.perform(configurator: self)
-        when :ios
-          #ConfigureSwift.perform(configurator: self)
+        when :ios, :macos
+          ConfigureSwift.perform(configurator: self)
         when :tvos 
           #ConfiguretvOSSwift.perform(configurator: self)
           puts "User has selected the platform - tvOS"
         end
+
+        abort("Abort to avoid the rest of the code to run!")
         
         prepare_sources_according_to_selection
         replace_variables_in_files 
@@ -103,7 +103,7 @@ module Pod
         rename_template_files 
         # add_pods_to_podfile #?
         # customise_prefix #?
-        delete_template_git_repo
+      # delete_template_git_repo
         # run_pod_install #? 
         
         @message_bank.farewell_message

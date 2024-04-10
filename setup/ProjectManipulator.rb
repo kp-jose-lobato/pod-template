@@ -19,9 +19,10 @@ module Pod
 
     def run
       @string_replacements = {
-        "PROJECT_OWNER" => @configurator.user_name,
-        "TODAYS_DATE" => @configurator.date,
-        "TODAYS_YEAR" => @configurator.year,
+        # These strings are not used in the new project, I leave them here temporarely.
+        # "PROJECT_OWNER" => @configurator.user_name,
+        # "TODAYS_DATE" => @configurator.date,
+        # "TODAYS_YEAR" => @configurator.year,
         "PROJECT" => @configurator.pod_name,
         "CPD" => @prefix
       }
@@ -29,7 +30,9 @@ module Pod
 
       @project = Xcodeproj::Project.open(@xcodeproj_path)
       add_podspec_metadata
-      remove_demo_project if @remove_demo_target
+      # For now we will always keep the demo project. 
+      # Leaving this line commented temporarely for security.
+      # remove_demo_project if @remove_demo_target
       @project.save
 
       rename_files
@@ -40,7 +43,6 @@ module Pod
       project_metadata_item = @project.root_object.main_group.children.select { |group| group.name == "Podspec Metadata" }.first
       project_metadata_item.new_file "../" + @configurator.pod_name  + ".podspec"
       project_metadata_item.new_file "../README.md"
-      project_metadata_item.new_file "../LICENSE"
     end
 
     def remove_demo_project
@@ -97,7 +99,7 @@ RUBY
 
       unless @remove_demo_target
         # change app file prefixes
-        ["CPDAppDelegate.h", "CPDAppDelegate.m", "CPDViewController.h", "CPDViewController.m"].each do |file|
+        ["CPDAppDelegate.swift", "CPDViewController.swift"].each do |file|
           before = project_folder + "/PROJECT/" + file
           next unless File.exist? before
 
