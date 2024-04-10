@@ -28,7 +28,7 @@ module Pod
 
       case @configurator.pod_type
       when :feature
-        puts "  Configuring dependencies in a feature pod"
+        puts "\n  Configuring dependencies in a " + "feature pod".magenta
         configurator.add_pod_to_podfile Dependency.new "XVAsset", "../../../Common/XVAsset"
         configurator.add_pod_to_podfile Dependency.new "UIFramework", "../../../UIFramework"
         configurator.add_pod_to_podfile Dependency.new "XVCoordinationRequest", "../../../Common/XVCoordinationRequest"
@@ -36,7 +36,7 @@ module Pod
         configurator.add_pod_to_podfile Dependency.new "XVEntities", "../../../Common/XVEntities"
         
       when :interface
-        puts "  Configuring dependencies in an interface pod"
+        puts "\n  Configuring dependencies in an interface pod"
         configurator.add_pod_to_podfile Dependency.new "XVEntities", "../../../Common/XVEntities"
 
       else

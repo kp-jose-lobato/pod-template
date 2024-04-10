@@ -201,7 +201,6 @@ module Pod
     end
     
     def replace_file_content(file_name)
-      puts "file name: #{file_name}"
       text = File.read(file_name)
       text.gsub!("${POD_NAME}", @pod_name)
       text.gsub!("XVXXX", @pod_name)

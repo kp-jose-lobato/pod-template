@@ -45,5 +45,8 @@ Pod::Spec.new do |s|
   s.script_phase = { :name => 'Cuckoo Mock Generator',
         :script => 'cd "$(git rev-parse --show-toplevel 2>/dev/null)"/Features ; sh ${POD_NAME}/CuckooMockGenerator.sh',
         :execution_position => :before_compile}
+  ## This script will generate an error on Xcode about the script being run all the time.
+  ## on `pod` version >=1.15 there is an option to suppres this erro: `:always_out_of_date => "1"`
+  ## (see: https://www.rubydoc.info/gems/cocoapods-core/Pod%2FPodfile%2FDSL:script_phase)
 
 end
