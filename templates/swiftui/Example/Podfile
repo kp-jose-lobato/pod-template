@@ -8,12 +8,6 @@ target '${POD_NAME}_Example' do
   target '${POD_NAME}_Tests' do
     inherit! :search_paths
 
-    pod 'XVAsset'
-    pod 'UIFramework'
-    pod 'KPAnalyticsInterface'
-    pod 'XVCoordinationRequest'
-    pod 'XVEntities'
-    
     ${INCLUDED_PODS}
   end
 end

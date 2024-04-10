@@ -24,6 +24,25 @@ module Pod
         :prefix => ""
       }).run
 
+      pod_type =
+
+      case @configurator.pod_type
+      when :feature
+        puts "  Configuring dependencies in a feature pod"
+        configurator.add_pod_to_podfile "XVAsset"
+        configurator.add_pod_to_podfile "UIFramework"
+        configurator.add_pod_to_podfile "KPAnalyticsInterface"
+        configurator.add_pod_to_podfile "XVCoordinationRequest"
+        configurator.add_pod_to_podfile "XVEntities"
+        
+      when :interface
+        puts "  Configuring dependencies in an interface pod"
+        configurator.add_pod_to_podfile "XVEntities"
+
+      else
+        puts "  Unknown pod type to configure"
+      end
+
       # Move the Example folder to the root
       `mv ./templates/swiftui/* ./`
 
