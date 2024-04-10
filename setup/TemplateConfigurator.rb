@@ -202,6 +202,7 @@ module Pod
         text.gsub!("${POD_NAME}", @pod_name)
         text.gsub!("XVXXX", @pod_name)
         text.gsub!("${POD_TYPE}", @pod_type.to_s)
+        # Temporarely disable intentionaly.
         # text.gsub!("${REPO_NAME}", @pod_name.gsub('+', '-'))
         # text.gsub!("${USER_NAME}", user_name)
         # text.gsub!("${USER_EMAIL}", user_email)
@@ -215,6 +216,7 @@ module Pod
       end
       
       def add_pods_to_podfile
+        # This method adds the pod needed during the configuration to the new Podfile.
         podfile = File.read podfile_path
         podfile_content = @pods_for_podfile.map do |pod|
           "pod '" + pod + "'"
@@ -248,8 +250,7 @@ module Pod
         FileUtils.mv "POD_README.md", "README.md"
         FileUtils.mv "NAME.podspec", "#{pod_name}.podspec"
       end
-      
-      
+          
       def delete_template_git_repo
         `rm -rf .git`
       end
@@ -276,6 +277,7 @@ module Pod
         (ENV['GIT_COMMITTER_EMAIL'] || `git config user.email`).strip
       end
       
+      # Temporarely disable intentionaly.
       # def year
       #   Time.now.year.to_s
       # end
