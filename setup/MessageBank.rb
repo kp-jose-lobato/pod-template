@@ -109,5 +109,20 @@ module Pod
 
     end
 
+    def show_intallation_message
+      puts ""
+      puts "One more thin! To install it in ExpressVPN add the following line in your Podfile:".green
+      path = ""
+      case @configurator.pod_type
+      when :feature
+        path = "./Features/" + @configurator.pod_name
+      when :interface
+        path = "./Features/" + @configurator.pod_name
+      end
+
+      installation_line = "    pod '" + @configurator.pod_name + "', :path => '" + path + "', :testspecs => ['Tests']"
+      puts installation_line.green
+    end
+
   end
 end

@@ -111,6 +111,7 @@ module Pod
       run_pod_install
       
       @message_bank.farewell_message
+      @message_bank.show_intallation_message
     end
     
     #----------------------------------------#
